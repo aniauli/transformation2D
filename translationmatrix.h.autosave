@@ -1,0 +1,15 @@
+#ifndef TRANSLATIONMATRIX_H
+#define TRANSLATIONMATRIX_H
+#include"matrix.h"
+#include"punkt.h"
+
+class translationMatrix: public matrix
+{
+public:
+    translationMatrix();
+    translationMatrix(float tx, float ty);
+    void inverseMatrix(float tx, float ty);
+    punkt muliplyMatrixByPoint(punkt &piksel);
+};
+
+#endif // TRANSLATIONMATRIX_H

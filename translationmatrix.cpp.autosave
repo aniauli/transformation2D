@@ -1,0 +1,35 @@
+#include "translationmatrix.h"
+
+translationMatrix::translationMatrix(float tx, float ty)
+{
+    element[0][0] = 1;
+    this->element[0][1] = 0;
+    this->element[0][2] = tx;
+    this->element[1][0] = 0;
+    this->element[1][1] = 1;
+    this->element[1][2] = ty;
+    this->element[2][0] = 0;
+    this->element[2][1] = 0;
+    this->element[2][2] = 1;
+}
+
+translationMatrix translationMatrix::getInverseMatrix(float tx, float ty)
+{
+    element[0][2] = -tx;
+    this->element[1][2] = -ty;
+    return *this;
+}
+
+punkt translationMatrix::muliplyMatrixByPoint(punkt &piksel)
+{
+    punkt resultPoint;
+
+    resultPoint.x = piksel.x * element[0][0] + piksel.y * element[0][1] +
+            piksel.W * macierz.element[0][2];
+    resultPoint.y = piksel.x * macierz.element[1][0] + piksel.y * macierz.element[1][1] +
+            piksel.W * macierz.element[1][2];
+    resultPoint.W = piksel.x * macierz.element[2][0] + piksel.y * macierz.element[2][1] +
+            piksel.W * macierz.element[2][2];
+
+    return resultPoint;
+}

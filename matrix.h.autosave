@@ -1,0 +1,19 @@
+#ifndef MACIERZ_H
+#define MACIERZ_H
+
+#include"punkt.h"
+#include<cstdlib>
+#include<cmath>
+
+class matrix
+{
+public:
+    matrix();
+    double element[3][3];
+    punkt muliplyMatrixByPoint(punkt &piksel);
+    matrix multiplyByMatrix(matrix &rightMatrix);
+    matrix composition(matrix leftMatrix, matrix rightMatrix);
+    matrix createMatrix(matrix T, matrix Shy, matrix Shx, matrix R, matrix S);
+};
+
+#endif // MACIERZ_H

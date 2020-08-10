@@ -1,0 +1,15 @@
+#ifndef MACIERZ_H
+#define MACIERZ_H
+
+class macierz
+{
+public:
+    macierz();
+    float wiersz1[3];
+    float wiersz2[3];
+    float wiersz3[3];
+    
+    macierz ma
+};
+
+#endif // MACIERZ_H

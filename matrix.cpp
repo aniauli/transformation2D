@@ -1,0 +1,58 @@
+#include "matrix.h"
+
+matrix::matrix()
+{
+    element[0][0] = 1;
+    element[0][1] = 0;
+    element[0][2] = 0;
+    element[1][0] = 0;
+    element[1][1] = 1;
+    element[1][2] = 0;
+    element[2][0] = 0;
+    element[2][1] = 0;
+    element[2][2] = 1;
+}
+
+matrix matrix::multiplyByMatrix(matrix &rightMatrix)
+{
+    matrix *multiplied = new matrix();
+    double tmp;
+
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            tmp = 0;
+            for(int k = 0; k < 3; k++)
+            {
+                tmp += element[i][k] * rightMatrix.element[k][j];
+            }
+            multiplied->element[i][j] = tmp;
+        }
+    }
+    return *multiplied;
+}
+
+punkt matrix::muliplyMatrixByPoint(punkt &piksel)
+{
+    punkt resultPoint;
+
+    resultPoint.x = (int)floor(piksel.x * element[0][0] + piksel.y * element[0][1] + piksel.W * element[0][2]);
+    resultPoint.y = (int)floor(piksel.x * element[1][0] + piksel.y * element[1][1] + piksel.W * element[1][2]);
+    resultPoint.W = 1;
+
+    return resultPoint;
+}
+
+matrix matrix::composition(matrix leftMatrix, matrix rightMatrix)
+{
+    matrix tmp, poZlozeniu;
+    tmp = leftMatrix.multiplyByMatrix(*this);
+    poZlozeniu = tmp.multiplyByMatrix(rightMatrix);
+    return poZlozeniu;
+}
+
+void matrix::setSxSy(double sx, double sy){
+    element[0][0] = sx;
+    element[1][1] = sy;
+}
